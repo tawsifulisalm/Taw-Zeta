@@ -79,6 +79,26 @@ section {
     justify-content: space-between;
 }
 
+.order button {
+    padding: 5px;
+    width: 30px;
+    font-size: 13px;
+    font-weight: bolder;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    margin: 5px;
+    background-color: var(--secondary);
+    color: var(--text);
+    transition: .5s;
+    cursor: pointer;
+    outline: none;
+}
+
+.order button:hover, .order button:active {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
 .row-entries {
     margin: 10px;
 }
