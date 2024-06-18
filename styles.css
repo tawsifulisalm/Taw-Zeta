@@ -10,11 +10,18 @@
 }
 
 :root {
-  --text: #EEEEEE;
+  --text: #eeeeee;
   --background: #222831;
-  --primary: #57A6A1;
+  --primary: #57a6a1;
+  --primary2: #51d9d0;
   --secondary: #3c4147;
-  --accent: #966B7C;
+  --accent: #b27f94;
+  --accent: #d99ab5;
+}
+
+html,
+body {
+  cursor: none;
 }
 
 html {
@@ -23,6 +30,42 @@ html {
 
 body {
   background-color: var(--background);
+}
+
+section {
+  min-height: 100vh;
+  padding: 10rem 9% 2rem;
+}
+
+a {
+  color: var(--text);
+}
+
+span {
+  color: var(--primary);
+}
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  border: 2px solid var(--accent);
+}
+
+.cursor-outline {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--accent);
+}
+
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+  pointer-events: none;
 }
 
 .home {
@@ -51,14 +94,68 @@ body {
   z-index: 999999;
 }
 
+.svg-frame {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg-frame svg {
+  position: absolute;
+  transition: 0.5s;
+  z-index: calc(1 - (0.2 * var(--j)));
+  transform-origin: center;
+  width: 344px;
+  height: 344px;
+  fill: none;
+}
+
+.svg-frame svg #center {
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.svg-frame:hover svg #center {
+  transform: rotate(-30deg) translateX(45px) translateY(-3px);
+}
+
+#out2 {
+  animation: rotate16 7s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+#out3 {
+  animation: rotate16 3s ease-in-out infinite alternate;
+  transform-origin: center;
+  stroke: var(--accent);
+}
+
+#inner3,
+#inner1 {
+  animation: rotate16 4s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+#center1 {
+  fill: var(--accent);
+  animation: rotate16 2s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes rotate16 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .hidden {
-  .loader {
-    background: var(--accent);
-    box-shadow: 0 0 5px var(--accent),
-      0 0 25px var(--accent),
-      0 0 50px var(--accent),
-      0 0 200px var(--accent);
-    transition: 1s;
+  .svg-frame svg {
+    transform: rotate(-80deg) skew(30deg) translateX(calc(45px * var(--i)))
+      translateY(calc(-35px * var(--i)));
   }
 
   opacity: 0;
@@ -74,8 +171,6 @@ body {
   transition: 2s;
 }
 
-.loader:hover {}
-
 .loader span {
   position: absolute;
   display: block;
@@ -88,7 +183,7 @@ body {
   height: 40px;
   background: linear-gradient(90deg, transparent, var(--accent));
   /* Change to accent color */
-  animation: loading1 .6s linear infinite;
+  animation: loading1 0.6s linear infinite;
   animation-delay: 0s;
 }
 
@@ -99,7 +194,7 @@ body {
   height: 40px;
   background: linear-gradient(270deg, transparent, var(--accent));
   /* Change to accent color */
-  animation: loading3 .6s linear infinite;
+  animation: loading3 0.6s linear infinite;
   animation-delay: 0s;
 }
 
@@ -110,8 +205,8 @@ body {
   height: 100%;
   background: linear-gradient(180deg, transparent, var(--accent));
   /* Change to accent color */
-  animation: loading2 .6s linear infinite;
-  animation-delay: .3s;
+  animation: loading2 0.6s linear infinite;
+  animation-delay: 0.3s;
 }
 
 .loader span:nth-child(4) {
@@ -121,13 +216,8 @@ body {
   height: 100%;
   background: linear-gradient(0deg, transparent, var(--accent));
   /* Change to accent color */
-  animation: loading4 .6s linear infinite;
-  animation-delay: .3s;
-}
-
-a {
-  text-decoration: none;
-  color: var(--text);
+  animation: loading4 0.6s linear infinite;
+  animation-delay: 0.3s;
 }
 
 .header {
@@ -141,7 +231,7 @@ a {
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-  transition: .3s;
+  transition: 0.3s;
   visibility: visible;
 }
 
@@ -155,7 +245,7 @@ a {
 
 .img-logo {
   margin-right: 10px;
-  width: 45px;
+  width: auto;
   height: 60px;
 }
 
@@ -188,17 +278,24 @@ a {
 }
 
 .gamma-logo {
-  font-family: 'Gentium';
+  font-family: "Gentium";
   font-weight: 20px;
 }
 
-.tau {
+.tawzeta,
+.tawzeta > * {
+  background: linear-gradient(to right, var(--accent), var(--primary2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* .tau {
   color: var(--text);
 }
 
 .gamma {
   color: var(--primary);
-}
+} */
 
 .logo {
   position: relative;
@@ -218,7 +315,7 @@ a {
   color: var(--text);
   font-weight: 500;
   margin-left: 3.5rem;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .navbar a:hover,
@@ -231,20 +328,17 @@ a {
   position: relative;
   font-size: 3.6rem;
   color: var(--text);
-  cursor: pointer;
   display: none;
-}
-
-section {
-  min-height: 100vh;
-  padding: 10rem 9% 2rem;
 }
 
 .mat {
   color: var(--text);
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
   background-color: var(--secondary) !important;
   border-color: var(--secondary);
 }
@@ -261,16 +355,12 @@ section {
   font-size: 20px;
   background-color: var(--secondary);
   text-decoration: none;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .btn-main:hover {
   background-color: var(--accent);
   /* Change to accent color */
-}
-
-span {
-  color: var(--primary);
 }
 
 .tool-icon {
@@ -298,11 +388,12 @@ span {
   border-radius: 20px;
   text-align: center;
   justify-self: center;
-  transition: .25s;
+  transition: 0.25s;
 }
 
 .tool-con:hover {
-  .tool-heading, .tool-para {
+  .tool-heading,
+  .tool-para {
     color: var(--secondary);
   }
 
@@ -337,10 +428,11 @@ span {
   border-radius: 20px;
   padding: 15px;
   margin: 10px 40px 10px 40px;
-  transition: .5s;
+  transition: 0.5s;
 }
 
-.btn-tool:hover, .btn-tool:active {
+.btn-tool:hover,
+.btn-tool:active {
   color: var(--accent);
   /* Change to accent color */
   background-color: var(--background);
@@ -369,17 +461,17 @@ span {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: .8rem;
+  padding: 0.8rem;
   background: var(--accent);
   /* Change to accent color */
-  border: .2rem solid var(--accent);
-  border-radius: .6rem;
+  border: 0.2rem solid var(--accent);
+  border-radius: 0.6rem;
   z-index: 1;
   overflow: hidden;
 }
 
 .footer-iconTop a::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -387,7 +479,7 @@ span {
   height: 100%;
   background: var(--secondary);
   z-index: -1;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .footer-iconTop a:hover::before {
@@ -397,7 +489,7 @@ span {
 .footer-iconTop a i {
   font-size: 2rem;
   color: var(--background);
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .footer-iconTop a i:hover {
@@ -405,8 +497,11 @@ span {
   /* Change to accent color */
 }
 
+.the-mace {
+  text-decoration: none;
+}
+
 .attribute {
-  text-decoration: solid;
   color: var(--primary);
 }
 
@@ -433,7 +528,6 @@ span {
   .footer {
     padding: 2rem 4%;
   }
-
 }
 
 @media (max-width: 850px) {
@@ -458,10 +552,10 @@ span {
     width: 100%;
     padding: 1rem 4%;
     background: var(--primary);
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
     z-index: 1;
-    transition: .25s ease;
-    transition-delay: .25s;
+    transition: 0.25s ease;
+    transition-delay: 0.25s;
   }
 
   .navbar.active {
@@ -476,15 +570,15 @@ span {
     width: 100%;
     height: 100%;
     background: var(--background);
-    border-top: .1rem solid rgba(0, 0, 0, .2);
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
     z-index: -1;
-    transition: .25s ease;
+    transition: 0.25s ease;
     transition-delay: 0s;
   }
 
   .navbar.active .active-nav {
     left: 0;
-    transition-delay: .25s;
+    transition-delay: 0.25s;
   }
 
   .navbar a {
@@ -492,15 +586,14 @@ span {
     font-size: 2rem;
     margin: 3rem 0;
     transform: translateX(-20rem);
-    transition: .25s ease;
+    transition: 0.25s ease;
     transition-delay: 0s;
   }
 
   .navbar.active a {
     transform: translateX(0rem);
-    transition-delay: .25s;
+    transition-delay: 0.25s;
   }
-
 }
 
 @media (max-width: 520px) {
@@ -544,7 +637,6 @@ span {
     margin-top: 2rem;
     text-align: center;
   }
-
 }
 
 @media (max-width: 371px) {
@@ -562,7 +654,6 @@ span {
   .home-content h1 {
     font-size: 5rem;
   }
-
 }
 
 @keyframes loading1 {
