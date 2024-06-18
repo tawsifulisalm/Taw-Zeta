@@ -1,4 +1,26 @@
 /* Place your JavaScript in this file */
+//Custom Cursor
+const cursorDot = document.querySelector("[data-cursor-dot]");
+const cursorOutline = document.querySelector("[data-cursor-outline]");
+
+window.addEventListener("mousemove", function (e) {
+  const posX = e.clientX;
+  const posY = e.clientY;
+
+  cursorDot.style.left = `${posX}px`;
+  cursorDot.style.top = `${posY}px`;
+
+  // cursorOutline.style.left = `${posX}px`;
+  // cursorOutline.style.top = `${posY}px`;
+
+  cursorOutline.animate(
+    {
+      left: `${posX}px`,
+      top: `${posY}px`,
+    },
+    { duration: 500, fill: "forwards" }
+  );
+});
 
 //Loader
 window.addEventListener("load", () => {
@@ -9,7 +31,7 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     console.log("BUT DISAPPEARED NOW!!!");
     loader.classList.add("hidden");
-  }, 1000);
+  }, 1500);
 });
 
 // toggle icon navbar
@@ -61,7 +83,7 @@ window.onscroll = () => {
   navbar.classList.remove("active");
 };
 
-// Homepage Spidermna Dots
+// Homepage Spiderman Dots
 
 let banner = document.getElementById("home");
 let canvas = document.getElementById("dotsCanvas");
@@ -74,7 +96,7 @@ const ctx = canvas.getContext("2d");
 let dots = [];
 let arrayColors = ["#eee", "#545454", "#596d91", "#bb5a68", "#696541"];
 
-for (let index = 0; index < 50; index++) {
+for (let index = 0; index < 30; index++) {
   dots.push({
     x: Math.floor(Math.random() * canvas.width),
     y: Math.floor(Math.random() * canvas.height),
