@@ -13,9 +13,14 @@
   --text: #eeeeee;
   --background: #222831;
   --primary: #57a6a1;
-  --primary2: #397773;
+  --primary2: #51d9d0;
   --secondary: #3c4147;
   --accent: #966b7c;
+}
+
+html,
+body {
+  cursor: none;
 }
 
 html {
@@ -57,6 +62,46 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.bn31 {
+  background-image: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--primary) 100%
+  );
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: var(--accent);
+  display: block;
+  height: 50px;
+  font-size: 1.4em;
+  font-weight: bolder;
+  padding: 4px;
+  position: relative;
+  text-decoration: none;
+  width: 7em;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.bn31:hover {
+  color: #fff;
+}
+
+.bn31 .bn31span {
+  align-items: center;
+  background: var(--secondary);
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background 0.5s ease;
+  width: 100%;
+}
+
+.bn31:hover .bn31span {
+  background: transparent;
 }
 
 .mat-select {
